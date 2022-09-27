@@ -1,0 +1,34 @@
+_schema-version: "3.2"
+ID: visMTAProject
+description: MTA Apps
+version: 1.0.0
+
+modules:
+  - name: vis_Approuter
+    type: javascript.nodejs
+    path: ./appRouter
+    build-parameters:
+      builder: custom
+      commands: []
+      ignore:
+        - node_modules/
+        - package-lock.json
+        - default-env.json
+    properties:
+      TENANT_HOST_PATTERN: ^(.*).${space}-vis-approuter.${default-domain}
+    requires:
+      - name: northwind
+      - name: vis_xsuaa
+
+resources:
+ - name: northwind
+   type: org.cloudfoundry.existing-service
+   parameters:
+     service-name: demo-destination
+
+ - name: vis_xsuaa
+   type: org.cloudfoundry.managed-service
+   parameters:
+     service: xsuaa
+     service-plan: application  
+

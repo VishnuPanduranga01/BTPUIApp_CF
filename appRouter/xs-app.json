@@ -1,0 +1,27 @@
+{
+    "welcomeFile":"webapp/index.html",
+    "authenticationMethod": "route",
+    "routes":[
+            {
+                "source": "^/webapp/(.*)$",
+                "target": "$1",
+                "localDir": "./webapp",
+                "authenticationType": "xsuaa",
+                "csrfProtection": false
+            },
+            {
+                "source": "^/v2/Northwind/(.*)$",
+                "target": "/v2/Northwind/$1",
+                "destination": "northwind",
+                "authenticationType": "xsuaa",
+                "csrfProtection": false
+            },
+            {
+                "source": "^/v4/Northwind/(.*)$",
+                "target": "/v4/Northwind/$1",
+                "destination": "northwind",
+                "authenticationType": "xsuaa",
+                "csrfProtection": false
+            }
+    ]
+}
